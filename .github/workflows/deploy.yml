@@ -24,10 +24,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clean cache and install dependencies
+        run: |
+          npm cache clean --force
+          npm install --legacy-peer-deps
 
       - name: Build
         run: npm run build
